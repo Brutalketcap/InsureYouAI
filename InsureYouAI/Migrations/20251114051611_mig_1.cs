@@ -45,11 +45,17 @@ namespace InsureYouAI.Migrations
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CategoryId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categorys", x => x.CategoryId);
+                    table.ForeignKey(
+                        name: "FK_Categorys_Categorys_CategoryId1",
+                        column: x => x.CategoryId1,
+                        principalTable: "Categorys",
+                        principalColumn: "CategoryId");
                 });
 
             migrationBuilder.CreateTable(
@@ -191,6 +197,11 @@ namespace InsureYouAI.Migrations
                 name: "IX_Articles_CategoryId",
                 table: "Articles",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categorys_CategoryId1",
+                table: "Categorys",
+                column: "CategoryId1");
         }
 
         /// <inheritdoc />
