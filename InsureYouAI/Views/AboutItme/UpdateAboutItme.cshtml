@@ -1,0 +1,21 @@
+﻿@model AboutItem
+
+@{
+    ViewData["Title"] = "UpdateAboutItme";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-0">Hakkımızda Bölümü Düzenleme Sayfası</h5>
+        </div>
+        <form method="post">
+            <input type="hidden" asp-for="AboutItemId" />
+            <label>Başlık</label>
+            <textarea type="text" asp-for="Detail" rows"5" class="form-control"></textarea>
+            <br />
+            <button class="btn btn-success">Hakkımızda Yazısını Güncelle</button>
+        </form>
+    </div>
+</div> 

@@ -34,24 +34,6 @@ namespace InsureYouAI.Controllers
             return RedirectToAction("CategoryList");
         }
 
-        [HttpGet]
-        public IActionResult UpdateCategory(int id)
-        {
-            var value = _context.Categorys.Find(id);
-
-            return View(value);
-        }
-        
-        [HttpPost]
-        public IActionResult UpdateCategory(Category category)
-        {
-            var value = _context.Categorys.Update(category);
-            _context.SaveChanges();
-
-            return RedirectToAction("CategoryList");
-        }
-        
-        
         public IActionResult DeleteCategory(int id)
         {
             var value = _context.Categorys.Find(id);
@@ -60,6 +42,27 @@ namespace InsureYouAI.Controllers
 
             return RedirectToAction("CategoryList");
         }
+
+        [HttpGet]
+        public IActionResult UpdateCategory(int id)
+        {
+            var value = _context.Categorys.Find(id);
+
+            return View(value);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCategory(Category category)
+        {
+            var value = _context.Categorys.Update(category);
+            _context.SaveChanges();
+
+            return RedirectToAction("CategoryList");
+        }
+
+
+
+
 
     }
 }

@@ -1,0 +1,28 @@
+﻿@model Message
+@{
+    ViewData["Title"] = "CreateMessage";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-0">Yeni Örnek Mesaj Sayfası</h5>
+        </div>
+        <form method="post">
+            <label>Gönderici Ad Soyad</label>
+            <input type="text" asp-for="NameSurname" rows"5" class="form-control" />
+            <br />
+            <label>Gönderici Emali Adresi</label>
+            <input type="email" asp-for="Email" rows"5" class="form-control" />
+            <br />
+            <label>Konu</label>
+            <input type="text" asp-for="Subject" rows"5" class="form-control" />
+            <br />
+            <label>Mesaj Detayı</label>
+            <textarea typeof="text" rows="3" asp-for="MessagetDetail" class="form-control"></textarea>
+            <br />
+            <button class="btn btn-primary">Mesajı Kaydet</button>
+        </form>
+    </div>
+</div>
