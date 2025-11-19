@@ -50,7 +50,7 @@ namespace InsureYouAI.Controllers
 
             return View(value);
         }
-
+        [HttpPatch]
         public IActionResult UpdatePricingPlan(PricingPlan pricingPlan)
         {
             var value = _context.PricingPlans.Update(pricingPlan);

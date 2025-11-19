@@ -1,0 +1,32 @@
+﻿@model Article
+@{
+    ViewData["Title"] = "UpdateArticle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-0">Makale Düzenleme Sayfası</h5>
+        </div>
+        <form method="post">
+            <input type="hidden" asp-for="ArticleId"/>
+            <label>Başlığı</label>
+            <input type="text" asp-for="Title" rows"5" class="form-control" />
+            <br />
+            <label>Kapak Fotoğrafı Url</label>
+            <input type="text" asp-for="CoverImageUrl" rows"5" class="form-control" />
+            <br />
+            <label>Makale Detay Kapak Göresel</label>
+            <input type="text" asp-for="MainCoverImageUrl" rows"5" class="form-control" />
+            <br />
+            <label>Kategori</label>
+            <input type="text" asp-for="CategoryId" rows"5" class="form-control" />
+            <br />
+            <textarea class="form-control" asp-for="Content" rows="13"></textarea>
+            <br />
+            <button class="btn btn-success">Makaleyi Güncelle</button>
+        </form>
+    </div>
+</div>
+
