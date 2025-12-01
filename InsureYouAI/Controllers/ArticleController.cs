@@ -59,5 +59,12 @@ namespace InsureYouAI.Controllers
 
             return RedirectToAction("ArticleList");
         }
+
+        [HttpGet]
+        public IActionResult CreateArticleWithOpenAI()
+        {
+
+            return View();
+        }
     }
 }
