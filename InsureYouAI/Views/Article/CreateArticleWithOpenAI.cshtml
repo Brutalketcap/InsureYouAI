@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "CreateArticleWithOpenAI";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
@@ -12,9 +11,17 @@
         <form method="post">
             <br />
             <label>Makale İçeriği Özeti ve Anahatar Kelimeler</label>
-            <input type="text" class="form-control" />
+            <input type="text" name="prompt" class="form-control" />
             <br />
             <button class="btn btn-primary">AI ile Makale Oluşturma</button>
         </form>
+        <br /><br />
+        @if (ViewBag.article != null)
+        {
+            <hr />
+            <h5>Oluşturulan AI Makalesi: </h5>
+            @Html.Raw(ViewBag.article.ToString())
+
+        }
     </div>
 </div>
