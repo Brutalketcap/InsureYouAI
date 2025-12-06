@@ -1,5 +1,4 @@
-﻿using InsureYouAI.ApiKey;
-using InsureYouAI.Context;
+﻿using InsureYouAI.Context;
 using InsureYouAI.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -74,7 +73,7 @@ namespace InsureYouAI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateArticleWithOpenAI(string prompt)
         {
-            var apiKey = ApiKeysOnly.OpenAIAPIKey;
+            var apiKey = "";
 
             using var clinet = new HttpClient();
             clinet.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);

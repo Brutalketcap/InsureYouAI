@@ -1,4 +1,5 @@
 ﻿@model About
+
 @{
     ViewData["Title"] = "UpdateAbout";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -18,7 +19,9 @@
             <input type="text" asp-for="ImageUrl" class="form-control" />
             <br />
             <label>Açıklama</label>
-            <textarea type="text" asp-for="Descripiton" rows"5" class="form-control"></textarea>
+            <textarea asp-for="Descripiton" rows="5" class="form-control"></textarea>
+            
+
             <br />
             <button class="btn btn-success">Hakkımızda Yazısını Güncelle</button>
         </form>
