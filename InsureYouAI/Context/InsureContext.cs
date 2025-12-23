@@ -1,9 +1,10 @@
 ﻿using InsureYouAI.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace InsureYouAI.Context
 {
-    public class InsureContext: DbContext
+    public class InsureContext: IdentityDbContext <AppUser>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,5 +22,6 @@ namespace InsureYouAI.Context
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<TrailerVideo> TrailerVideos { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

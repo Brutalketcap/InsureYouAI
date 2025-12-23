@@ -4,6 +4,7 @@ using InsureYouAI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InsureYouAI.Migrations
 {
     [DbContext(typeof(InsureContext))]
-    partial class InsureContextModelSnapshot : ModelSnapshot
+    [Migration("20251223195739_mig_31_updateComment_IdentityUser")]
+    partial class mig_31_updateComment_IdentityUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -207,13 +210,6 @@ namespace InsureYouAI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"));
 
-                    b.Property<string>("AppUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ArticleId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CommentDate")
                         .HasColumnType("datetime2");
 
@@ -221,11 +217,13 @@ namespace InsureYouAI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("appUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("CommentId");
 
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("ArticleId");
+                    b.HasIndex("appUserId");
 
                     b.ToTable("Comments");
                 });
@@ -573,19 +571,11 @@ namespace InsureYouAI.Migrations
                 {
                     b.HasOne("InsureYouAI.Entities.AppUser", "AppUser")
                         .WithMany("Comments")
-                        .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("InsureYouAI.Entities.Article", "Articles")
-                        .WithMany("Comments")
-                        .HasForeignKey("ArticleId")
+                        .HasForeignKey("appUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");
-
-                    b.Navigation("Articles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -640,11 +630,6 @@ namespace InsureYouAI.Migrations
                 });
 
             modelBuilder.Entity("InsureYouAI.Entities.AppUser", b =>
-                {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("InsureYouAI.Entities.Article", b =>
                 {
                     b.Navigation("Comments");
                 });

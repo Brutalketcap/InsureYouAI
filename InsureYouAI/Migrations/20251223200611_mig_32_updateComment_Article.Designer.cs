@@ -4,6 +4,7 @@ using InsureYouAI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InsureYouAI.Migrations
 {
     [DbContext(typeof(InsureContext))]
-    partial class InsureContextModelSnapshot : ModelSnapshot
+    [Migration("20251223200611_mig_32_updateComment_Article")]
+    partial class mig_32_updateComment_Article
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,21 @@ namespace InsureYouAI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("ArticleComment", b =>
+                {
+                    b.Property<int>("ArticlesArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CommentsCommentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArticlesArticleId", "CommentsCommentId");
+
+                    b.HasIndex("CommentsCommentId");
+
+                    b.ToTable("ArticleComment");
+                });
 
             modelBuilder.Entity("InsureYouAI.Entities.About", b =>
                 {
@@ -224,8 +242,6 @@ namespace InsureYouAI.Migrations
                     b.HasKey("CommentId");
 
                     b.HasIndex("AppUserId");
-
-                    b.HasIndex("ArticleId");
 
                     b.ToTable("Comments");
                 });
@@ -558,6 +574,21 @@ namespace InsureYouAI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ArticleComment", b =>
+                {
+                    b.HasOne("InsureYouAI.Entities.Article", null)
+                        .WithMany()
+                        .HasForeignKey("ArticlesArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("InsureYouAI.Entities.Comment", null)
+                        .WithMany()
+                        .HasForeignKey("CommentsCommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("InsureYouAI.Entities.Article", b =>
                 {
                     b.HasOne("InsureYouAI.Entities.Category", "Category")
@@ -577,15 +608,7 @@ namespace InsureYouAI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InsureYouAI.Entities.Article", "Articles")
-                        .WithMany("Comments")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("AppUser");
-
-                    b.Navigation("Articles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -640,11 +663,6 @@ namespace InsureYouAI.Migrations
                 });
 
             modelBuilder.Entity("InsureYouAI.Entities.AppUser", b =>
-                {
-                    b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("InsureYouAI.Entities.Article", b =>
                 {
                     b.Navigation("Comments");
                 });
