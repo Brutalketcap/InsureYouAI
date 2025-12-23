@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "CreateServiceWithAnthropicClaude";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    var service = ViewBag.service;
+}
+
+<div class="contact-mt-5">
+    <h2> Claude AI ile oluşturulan Hizmetler</h2>
+    <ul class="list-group mt-3">
+        @if (service != null)
+        {
+            foreach(var item in service)
+            {
+                <li class="list-group-itme">@item</li>
+            }
+        }
+        else
+        {
+            <li class="list-group-itme text-danger">Claude'dan veri alınamadı: @ViewBag.service'</li>
+        }
+    </ul>
+</div>

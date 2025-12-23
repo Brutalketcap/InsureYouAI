@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "CreateAboutWhitGoogleGemini";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    var testimonial= ViewBag.testimonials;
+}
+
+
+<div class="contact-mt-5">
+    <h2> Claude AI ile oluşturulan Hizmetler</h2>
+    <ul class="list-group mt-3">
+        @if (testimonial != null)
+        {
+            foreach (var item in testimonial)
+            {
+                <li class="list-group-itme">@item</li>
+            }
+        }
+        else
+        {
+            <li class="list-group-itme text-danger">Claude'dan veri alınamadı: @ViewBag.testimonial'</li>
+        }
+    </ul>
+</div>

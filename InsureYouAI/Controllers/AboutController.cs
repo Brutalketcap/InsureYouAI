@@ -64,6 +64,7 @@ namespace InsureYouAI.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateAboutWhitGoogleGemini()
         {
+            //Google Gemini API entegrasyonu burada yapılacak
             string apiKey = "";
             string model = "gemini-1.5-flash";
             var url = $"https://generativelanguage.googleapis.com/v1/models/{model}:generateContent?key={apiKey}";
